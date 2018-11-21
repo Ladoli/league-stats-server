@@ -1,0 +1,1 @@
+export const LEAGUE_KEY = "RGAPI-96943773-fe64-4212-8ab3-baecc5338c69";
