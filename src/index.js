@@ -1,9 +1,9 @@
-import express from 'express';
-import axios  from 'axios';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import { DEFAULT_GUY } from '../config';
-import { LEAGUE_KEY } from '../config/keys';
+const express = require('express');
+const axios = require('axios');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const DEFAULT_GUY = require('../config');
+const LEAGUE_KEY = require('../config/keys');
 
 const app = express();
 
@@ -11,6 +11,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use( bodyParser.json() );
 app.use(cors());
+
 
 const port = process.env.PORT || 5000;
 

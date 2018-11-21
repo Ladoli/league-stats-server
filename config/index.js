@@ -1,1 +1,1 @@
-export const DEFAULT_GUY = "Kappa Face";
+module.exports = "Kappa Face";
