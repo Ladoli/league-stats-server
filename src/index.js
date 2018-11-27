@@ -28,11 +28,12 @@ app.get('/', getSummonerMatches);
 async function getSummonerMatches(req, response) {
   let summonerName = "";
   let page = 0;
-  if(req && req.query && req.query.summonerName){
-    summonerName = req.query.summonerName;
+  if(req && req.query){
+    summonerName = req.query.summonerName ? req.query.summonerName : DEFAULT_GUY;
     page = req.query.page ? parseInt(req.query.page) : 0;
   }
   console.log("Request for summoner", summonerName)
+  console.log("Request for page", page)
   let matchesInfo = {};
   matchesInfo.summonerName = summonerName ? summonerName : DEFAULT_GUY;
   matchesInfo.matches = [];
@@ -49,7 +50,6 @@ async function getSummonerMatches(req, response) {
       'Content-Type': 'application/json',
     }
   });
-
   if(page === 0 || page === 1){
     page = 0;
   }else{
@@ -58,6 +58,7 @@ async function getSummonerMatches(req, response) {
   let currentMatchNumber = page*10;
   let limit = (page*10) + 10;
   let matchesCount =  matchesList.data.matches.length;
+  matchesInfo.matchesCount = matchesCount;
   if(currentMatchNumber > matchesCount){
     currentMatchNumber = matchesCount - 10;
     limit = matchesCount;
