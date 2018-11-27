@@ -82,8 +82,9 @@ async function getSummonerMatches(req, response) {
       });
       let summonerDataFromMatch = match.data.participants.some((participant)=>{
         if(participant.participantId === matchStats.participantId){
+            console.log(participant)
             matchStats.championId = participant.championId;
-            matchStats.creepScore = participant.stats.totalMinionsKilled;
+            matchStats.creepScore = participant.stats.totalMinionsKilled + participant.stats.neutralMinionsKilled;
             matchStats.champLevel = participant.stats.champLevel;
             matchStats.win = participant.stats.win;
             matchStats.kda = {
